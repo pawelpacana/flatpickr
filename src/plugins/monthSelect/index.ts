@@ -192,7 +192,7 @@ function monthSelectPlugin(pluginConfig?: Partial<Config>): Plugin {
       }
       setCurrentlySelected();
     }
-    
+
     function selectMonthWithRedraw(e: Event) {
       selectMonth(e);
       buildMonths();
