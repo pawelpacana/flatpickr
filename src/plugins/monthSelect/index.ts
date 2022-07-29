@@ -84,7 +84,7 @@ function monthSelectPlugin(pluginConfig?: Partial<Config>): Plugin {
         )
           month.classList.add("today");
         month.textContent = monthToStr(i, config.shorthand, fp.l10n);
-        month.addEventListener("click", selectMonth);
+        month.addEventListener("click", selectMonthWithRedraw);
         frag.appendChild(month);
       }
 
@@ -191,6 +191,11 @@ function monthSelectPlugin(pluginConfig?: Partial<Config>): Plugin {
         });
       }
       setCurrentlySelected();
+    }
+    
+    function selectMonthWithRedraw(e: Event) {
+      selectMonth(e);
+      buildMonths();
     }
 
     function selectMonth(e: Event) {
@@ -319,7 +324,7 @@ function monthSelectPlugin(pluginConfig?: Partial<Config>): Plugin {
         );
 
         for (let index = 0; index < months.length; index++) {
-          months[index].removeEventListener("click", selectMonth);
+          months[index].removeEventListener("click", selectMonthWithRedraw);
         }
       }
     }
